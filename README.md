@@ -1,33 +1,60 @@
 # Cloud-Database-Practical
 Cloud database instance creation and connection task (AWS RDS + MySQL Workbench)
 
-Task 5: Create and Connect to a Cloud Database Instance
-Objective:
+# Task 5: Create and Connect to a Cloud Database Instance
 
-To understand how cloud databases work by creating a managed SQL database instance on AWS RDS, connecting it using MySQL Workbench, and performing basic SQL operations.
+## Objective
+To understand how cloud databases work by creating a managed SQL database instance (MySQL) in AWS, connecting to it, and performing basic operations.  
+This helped me learn database provisioning, connectivity, and CRUD operations in a cloud-managed environment.
 
-Steps:
+---
 
-Logged in to AWS Management Console and opened RDS service.
+## Steps I Followed
 
-Clicked on Create database, selected MySQL, and used the Free Tier template.
+1. **Created an RDS Instance**
+   - Logged into the AWS Management Console and opened the RDS service.
+   - Selected **Create database** → **Standard Create** → **MySQL**.
+   - Used the **Free Tier** option and named the instance `intern-db`.
+   - Set a username and password, then launched the instance.
 
-Set the database name as intern-db, created username and password.
+2. **Configured Access**
+   - Enabled **Public Access**.
+   - Added my local system’s IP in the **Inbound Rules** of the security group to allow MySQL traffic (port 3306).
 
-Enabled Public access so that the instance can be accessed from MySQL Workbench.
+3. **Connected Using MySQL Workbench**
+   - Installed **MySQL Workbench** on my system.
+   - Used the endpoint from AWS RDS, username, and password to connect successfully.
 
-Created a new security group and added an inbound rule with type MySQL/Aurora, port 3306, and source as My IP.
+4. **Performed SQL Operations**
+   - Created a new database and table.
+   - Inserted sample data and viewed the output.
 
-Waited for the database to be available, then copied the endpoint from AWS RDS.
+5. **Cleaned Up**
+   - Deleted the RDS instance after testing to avoid extra usage.
 
-Opened MySQL Workbench, created a new connection using the endpoint, port 3306, username, and password.
+---
 
-Connected successfully to the RDS instance.
+## What I Learned
+- How to create and configure an AWS RDS instance.
+- How to connect a local client (MySQL Workbench) to a cloud-hosted database.
+- Basic SQL operations (create, insert, select).
+- The concept of Database-as-a-Service (DBaaS) and remote database management.
 
-Ran the following SQL commands:
+---
 
-CREATE DATABASE intern_db;
-USE intern_db;
+## Screenshots
+
+![AWS RDS](AWS-RDS.png)
+![MySQL Workbench](MySQL-Workbench.png)
+![SQL Commands and Output](SQL-Commands-and-Output.png)
+
+---
+
+## SQL Commands Used
+
+```sql
+CREATE DATABASE intern_demo;
+USE intern_demo;
 
 CREATE TABLE students (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -40,22 +67,3 @@ INSERT INTO students (name, domain, score)
 VALUES ('Aarav', 'Cloud', 95), ('Diya', 'DevOps', 89);
 
 SELECT * FROM students;
-
-
-Verified that data was inserted successfully and the database was working fine.
-
-Learnings:
-
-Learned how to create and configure an AWS RDS MySQL database.
-
-Understood how to manage access using security groups.
-
-Learned to connect and run SQL commands using MySQL Workbench.
-
-Screenshots:
-
-AWS-RDS.png
-
-MySQL-Workbench.png
-
-SQL-Commands-and-Output.png
